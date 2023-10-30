@@ -1,0 +1,9 @@
+# info file in Hungarian
+info.txt
+
+# Visual Studio helper files and solution file
+.vs
+.sln
+
+# Python interpreter generated files
+.pyc

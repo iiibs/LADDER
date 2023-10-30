@@ -27,7 +27,7 @@ n_epochs=32 #2 #1000 #2000 #1024 #65535 # Number of epochs performed to train af
 next_rank_rate=(0.5+1)/2 #(0.50+(0.5+1)/2)/2 # This is the rate that means that the winner should be in a higher league
 n_max_members=n_rows*n_cols # This many members can be at maximum on a certain rank of the ladder
 b_repeatable_random=False #True # when this is false, then we can get new results
-ladder_path=f"C:\\DESIRE_DATA\\CONNECT{n_connect}"
+ladder_path=f"CONNECT{n_connect}"
 verbose=0 #'learn' #'details' #False #'spec' #True
 b_plot_game=False #True
 b_plot_match=False #True
@@ -694,8 +694,34 @@ def test_the_best():
  result=play_game(machine,first)
  print(f"machine result= {result}")
 
+def set_data_path():
+ computername=os.environ.get("COMPUTERNAME")
+ if computername==None:
+  print("Running in Google Colab.")
+  data_path='/content/drive'
+  from google.colab import drive
+  drive.mount(data_path,force_remount=True)
+ else:
+  print("Running locally.")
+  data_path=os.environ.get("DATA_PATH")
+ return data_path
+
+def test():
+ print("ladder_path:",ladder_path)
+ 
 # Main function
 if __name__ == "__main__":
+
+ # set data path
+ data_path=set_data_path()
+ print("data_path:",data_path)
+
+ test()
+
+ ladder_path=data_path+'\\'+ladder_path
+ print("ladder_path:",ladder_path)
+
+ test()
 
  # Repeatable random or not
  if b_repeatable_random:
